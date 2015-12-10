@@ -3,8 +3,8 @@
     [
         "Theme - Spacegray",
         "Monokai - Spacegray",
-        "Sublime​Linter",
-        "Sublime​Linter-contrib-clang",
+        "SublimeLinter",
+        "SublimeLinter-contrib-clang",
         "Makefile Improved",
         "42 Headers",
         "Rust"
