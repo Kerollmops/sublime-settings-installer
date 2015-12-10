@@ -1,5 +1,11 @@
 #!/bin/sh
 
+if [ $# -eq 0 ]; then
+	echo "argv[0] = Preferences.sublime-settings"
+	echo "argv[1] = Package Control.sublime-settings"
+	exit
+fi;
+
 subl_settings_path="$HOME/Library/Application Support/Sublime Text 3"
 
 # quit Sublime Text
@@ -15,8 +21,8 @@ mkdir -p "$subl_settings_path/Packages/User"
 
 # user settings
 user_settings=$1
-if [ -e $user_settings ]; then
-	cp -f $user_settings "$subl_settings_path/Packages/User/Preferences.sublime-settings"
+if [ -e "$user_settings" ]; then
+	cp -f "$user_settings" "$subl_settings_path/Packages/User/Preferences.sublime-settings"
 else
 	echo "$user_settings file doesn't exist"
 fi;
@@ -24,8 +30,8 @@ fi;
 # install packages
 if [ $# -eq 2 ]; then
 	file_packs=$2
-	if [ -e $file_packs ]; then
-		cp $file_packs "$subl_settings_path/Packages/User/Package Control.sublime-settings"
+	if [ -e "$file_packs" ]; then
+		cp "$file_packs" "$subl_settings_path/Packages/User/Package Control.sublime-settings"
 	else
 		echo "$file_packs file doesn't exist"
 	fi;
