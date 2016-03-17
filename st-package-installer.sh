@@ -1,8 +1,7 @@
 #!/bin/sh
 
 if [ $# -eq 0 ]; then
-	echo "argv[0] = Preferences.sublime-settings"
-	echo "argv[1] = Package Control.sublime-settings"
+	echo "directory containing the Preferences.sublime-settings, Package\ Control.sublime-settings files"
 	exit
 fi;
 
@@ -20,7 +19,7 @@ curl "https://packagecontrol.io/Package%20Control.sublime-package" > "$subl_sett
 mkdir -p "$subl_settings_path/Packages/User"
 
 # user settings
-user_settings=$1
+user_settings="$1/Preferences.sublime-settings"
 if [ -e "$user_settings" ]; then
 	cp -f "$user_settings" "$subl_settings_path/Packages/User/Preferences.sublime-settings"
 else
@@ -29,7 +28,7 @@ fi;
 
 # install packages
 if [ $# -eq 2 ]; then
-	file_packs=$2
+	file_packs="$1/Package Control.sublime-settings"
 	if [ -e "$file_packs" ]; then
 		cp "$file_packs" "$subl_settings_path/Packages/User/Package Control.sublime-settings"
 	else
